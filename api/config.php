@@ -1,14 +1,14 @@
 <?php
 ini_set('session.cookie_secure', 1);
 ini_set('session.cookie_httponly', 1);
-define('DB_NAME', '01164502_inx');
-define('DB_USER', '01164502_inx');
-define('DB_PASSWORD', 'iN&5X32*8jks^hsdf(JS$e');
+define('DB_NAME', '');
+define('DB_USER', '');
+define('DB_PASSWORD', '');
 define('DB_HOST', 'mysql8');
 define('DB_CHARSET', 'utf8');
-define('SMTP_HOST', 'hosting2596057.online.pro');
-define('SMTP_USER', 'noreply@inbin.pl');
-define('SMTP_PASS', 'iN&biN%446Jdh(539)');
+define('SMTP_HOST', '');
+define('SMTP_USER', '');
+define('SMTP_PASS', '');
 define('SMTP_PORT', 587);
 // Create a PDO instance
 try {
