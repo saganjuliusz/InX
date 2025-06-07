@@ -1,0 +1,24 @@
+{
+  "name": "InX",
+  "short_name": "InX",
+  "description": "Aplikacja do odtwarzania muzyki ;)",
+  "start_url": "/InX/",
+  "scope": "/InX/",
+  "display": "standalone",
+  "background_color": "#1DB954",
+  "theme_color": "#1DB954",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

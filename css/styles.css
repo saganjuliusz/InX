@@ -1,0 +1,519 @@
+﻿/* Podstawowe style */
+body {
+    font-family: 'Poppins', 'Roboto', 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0f0f0f;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.kontener {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Pasek boczny */
+.pasek-boczny {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    background-color: #1a1a1a;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+}
+
+.pasek-boczny > * {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.pasek-boczny.zwiniety {
+    width: 60px;
+}
+
+.pasek-boczny.zwiniety > *:not(#przyciskToggle) {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    pointer-events: none;
+}
+
+.pasek-boczny #przyciskToggle {
+    transition: none;
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+}
+
+.pasek-boczny.zwiniety #przyciskToggle {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    padding: 15px 0;
+}
+
+.pasek-boczny.zwiniety:hover {
+    background-color: #252525;
+}
+
+.pasek-boczny.zwiniety .info-uzytkownika,
+.pasek-boczny.zwiniety #listaPlaylist,
+.pasek-boczny.zwiniety #formularzNowejPlaylisty,
+.pasek-boczny.zwiniety h2 {
+    display: none !important;
+}
+
+.przycisk-toggle {
+    background: none;
+    border: none;
+    color: #1DB954;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 15px;
+    margin-bottom: 20px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.przycisk-toggle:hover {
+    color: #1ED760;
+    transform: scale(1.1);
+}
+
+/* Główna zawartość */
+.glowna-zawartosc {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #121212;
+}
+
+.naglowek {
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.lista-utworow {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    max-height: calc(100vh - 200px);
+}
+
+/* Odtwarzacz */
+.odtwarzacz {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #181818;
+    padding: 15px;
+    text-align: center;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Typografia */
+h1, h2, h3 {
+    color: #1DB954;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Playlista i utwory */
+.playlista {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.utwor {
+    padding: 12px;
+    border-bottom: 1px solid #282828;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+}
+
+.utwor span {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 10px;
+}
+
+.utwor button {
+    flex-shrink: 0;
+}
+
+.utwor:hover {
+    background-color: #2a2a2a;
+    transform: translateY(-2px);
+}
+
+.utwor.aktywny {
+    background-color: #1DB954;
+    color: #000;
+}
+
+/* Kontrolki odtwarzacza */
+.kontrolki-odtwarzacza {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 10px;
+}
+
+.kontrolki-odtwarzacza button,
+.utwor button,
+.formularz-logowania button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.2s;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.kontrolki-odtwarzacza button:hover,
+.utwor button:hover,
+.formularz-logowania button:hover {
+    color: #1DB954;
+    transform: scale(1.1);
+}
+
+/* Pasek postępu */
+.pasek-postepu {
+    flex-grow: 1;
+    height: 4px;
+    background-color: #404040;
+    cursor: pointer;
+    margin: 0 10px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.pasek-postepu-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.postep {
+    height: 100%;
+    background-color: #1DB954;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+#terazOdtwarzane {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-weight: bold;
+    color: #1DB954;
+}
+
+/* Elementy playlisty */
+.element-playlisty {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.element-playlisty:hover {
+    background-color: #252525;
+}
+
+.strzalka-playlisty {
+    margin-right: 8px;
+    width: 20px;
+    text-align: center;
+    color: #1DB954;
+}
+
+.nazwa-playlisty {
+    flex-grow: 1;
+    text-align: left;
+    font-weight: 500;
+}
+
+.przyciski-playlisty {
+    display: none;
+    margin-left: auto;
+}
+
+.element-playlisty:hover .przyciski-playlisty {
+    display: flex;
+}
+
+.przyciski-playlisty button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: 5px;
+    font-size: 14px;
+    color: #b3b3b3;
+    transition: color 0.3s ease;
+}
+
+.przyciski-playlisty button:hover {
+    color: #1DB954;
+}
+
+.zagniezdzony-kontener {
+    padding-left: 20px;
+}
+
+/* Formularze */
+#formularzNowejPlaylisty,
+.formularz-logowania {
+    margin-top: 20px;
+}
+
+#formularzNowejPlaylisty input,
+.formularz-logowania input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #404040;
+    color: #fff;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#formularzNowejPlaylisty input:focus,
+.formularz-logowania input:focus {
+    border-color: #1DB954;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(29, 185, 84, 0.3);
+}
+
+#formularzNowejPlaylisty button,
+.formularz-logowania button {
+    width: 100%;
+    padding: 12px;
+    background-color: #1DB954;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#formularzNowejPlaylisty button:hover,
+.formularz-logowania button:hover {
+    background-color: #1ED760;
+    transform: scale(1.02);
+}
+
+/* Kontener logowania */
+.kontener-logowania {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #121212, #282828);
+}
+
+.formularz-logowania {
+    background-color: #181818;
+    padding: 40px;
+    border-radius: 12px;
+    width: 320px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.info-uzytkownika {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #b3b3b3;
+    padding: 10px;
+    background-color: #252525;
+    border-radius: 5px;
+}
+
+/* Przesyłanie i losowy utwór */
+.kontener-przesylania {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#przyciskPrzesylania,
+#przyciskLosowegoUtworu {
+    background-color: #1DB954;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-left: 10px;
+}
+
+#przyciskPrzesylania:hover,
+#przyciskLosowegoUtworu:hover {
+    background-color: #1ED760;
+    transform: scale(1.05);
+}
+
+#wyswietlaczCzasu {
+    font-size: 12px;
+    color: #b3b3b3;
+    min-width: 80px;
+    text-align: center;
+}
+
+/* Lista utworów */
+#listaUtworow {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-bottom: 100px;
+}
+
+/* Pasek przewijania */
+#listaPlaylist::-webkit-scrollbar,
+#listaUtworow::-webkit-scrollbar {
+    width: 6px;
+}
+
+#listaPlaylist::-webkit-scrollbar-track,
+#listaUtworow::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+#listaPlaylist::-webkit-scrollbar-thumb,
+#listaUtworow::-webkit-scrollbar-thumb {
+    background: #535353;
+    border-radius: 3px;
+}
+
+#listaPlaylist::-webkit-scrollbar-thumb:hover,
+#listaUtworow::-webkit-scrollbar-thumb:hover {
+    background: #6e6e6e;
+}
+
+/* Dodatkowe ulepszenia */
+.pasek-boczny h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+}
+
+#listaPlaylist {
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding: 0 15px;
+}
+
+/* Animacje */
+@keyframes pulsate {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.005);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.utwor.aktywny {
+    animation: pulsate 1s infinite;
+}
+
+/* Enhanced Bubble Effect */
+.glowna-zawartosc {
+    position: relative;
+    overflow: hidden;
+}
+
+.glowna-zawartosc::before,
+.glowna-zawartosc::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.glowna-zawartosc::before {
+    background-image: 
+        radial-gradient(circle, rgba(29, 185, 84, 0.1) 10%, transparent 10%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.05) 15%, transparent 15%);
+    background-size: 30px 30px, 40px 40px;
+    animation: bubbleAnimation1 60s linear infinite;
+}
+
+.glowna-zawartosc::after {
+    background-image: 
+        radial-gradient(circle, rgba(29, 185, 84, 0.05) 8%, transparent 8%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.03) 12%, transparent 12%);
+    background-size: 50px 50px, 70px 70px;
+    animation: bubbleAnimation2 90s linear infinite;
+}
+
+@keyframes bubbleAnimation1 {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+    100% {
+        background-position: 500px 500px, -500px -500px;
+    }
+}
+
+@keyframes bubbleAnimation2 {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+    100% {
+        background-position: -500px 500px, 500px -500px;
+    }
+}
+
+/* Add a subtle glow effect */
+.glowna-zawartosc {
+    animation: glowPulse 8s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: inset 0 0 50px rgba(29, 185, 84, 0.1);
+    }
+    50% {
+        box-shadow: inset 0 0 100px rgba(29, 185, 84, 0.2);
+    }
+}
+
